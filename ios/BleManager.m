@@ -36,8 +36,9 @@ static bool hasListeners = NO;
         stopNotificationCallbacks = [NSMutableDictionary new];
         _instance = self;
         NSLog(@"BleManager created");
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bridgeReloading) name:RCTBridgeWillReloadNotification object:nil];
+        if (![[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]  isEqual: @"Maserati"]) { 
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bridgeReloading) name:RCTBridgeWillReloadNotification object:nil];
+        }
     }
     
     return self;
